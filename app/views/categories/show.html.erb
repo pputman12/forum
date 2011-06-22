@@ -3,12 +3,18 @@
 <p>
   <b>Title:</b>
   <%= @category.title %>
+  
 </p>
 
 <p>
   <b>Description:</b>
   <%= @category.description %>
 </p>
+
+<% @category.forum_threads.each do |forum_thread| %>
+  <%= link_to  forum_thread.title, forum_thread %><br>
+<% end %>
+
 
 
 <%= link_to 'Edit', edit_category_path(@category) %> |

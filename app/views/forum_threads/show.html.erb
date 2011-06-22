@@ -10,6 +10,11 @@
   <%= @forum_thread.title %>
 </p>
 
+<% @forum_thread.posts.each do |post|%>
+  <% link_to post.title, post %>
+<% end %>
 
+
+<%= link_to 'Reply', new_forum_thread_post_path(@forum_thread) %> |
 <%= link_to 'Edit', edit_forum_thread_path(@forum_thread) %> |
 <%= link_to 'Back', category_forum_threads_path(@forum_thread.category) %>

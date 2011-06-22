@@ -1,14 +1,20 @@
 Forum::Application.routes.draw do
+  resources :posts, :only => [:show, :edit, :update, :destroy]
+
   resources :categories do
     resources :forum_threads, :only => [:index, :new, :create]
   end
   
-  resources :forum_threads, :only => [:show, :edit, :update, :destroy]
-
+  
+  
+  resources :forum_threads, :only => [:show, :edit, :update, :destroy] do
+    resources :posts, :only => [:index, :new, :create]
+  end
+    
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-  
+  get "newpost" => "posts#new", :as => "newpost"
   
   
   resources :sessions

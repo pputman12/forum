@@ -28,7 +28,7 @@ class ForumThreadsController < ApplicationController
   def new
     @category = Category.find(params[:category_id])
     @forum_thread = @current_user.forum_threads.build
-
+    @forum_thread.posts.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @forum_thread }

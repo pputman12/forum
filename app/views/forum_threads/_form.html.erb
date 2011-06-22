@@ -15,6 +15,15 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  <% if @forum_thread.new_record? %>
+    <%= f.fields_for :posts do |p| %>
+      <div class="field">
+        <%= p.label :content %><br />
+        <%= p.text_area :content %>
+      </div>
+    <% end %>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
