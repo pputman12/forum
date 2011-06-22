@@ -26,7 +26,10 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    #@post = Post.new
+    @forum_thread = ForumThread.find(params[:forum_thread_id])
+    @post = @current_user.posts.build
+    @forum_thread.posts.build
 
     respond_to do |format|
       format.html # new.html.erb
