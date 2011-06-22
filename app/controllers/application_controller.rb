@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  def login_required
+    unless current_user
+      redirect_to login_url
+    end
+  end
   
   private
   

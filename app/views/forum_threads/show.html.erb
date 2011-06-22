@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @forum_thread.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @forum_thread.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_category_forum_thread_path(@category, @forum_thread) %> |
+<%= link_to 'Back', category_forum_threads_path(@category) %>
