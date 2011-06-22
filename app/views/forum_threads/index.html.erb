@@ -13,9 +13,9 @@
   <tr>
     <td><%= forum_thread.user_id %></td>
     <td><%= forum_thread.title %></td>
-    <td><%= link_to 'Show', [@category, forum_thread] %></td>
-    <td><%= link_to 'Edit', edit_category_forum_thread_path(@category, forum_thread) %></td>
-    <td><%= link_to 'Destroy', [@category, forum_thread], confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', forum_thread %></td>
+    <td><%= link_to 'Edit', edit_forum_thread_path(forum_thread) %></td>
+    <td><%= link_to 'Destroy', forum_thread, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

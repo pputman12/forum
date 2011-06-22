@@ -11,5 +11,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_category_forum_thread_path(@category, @forum_thread) %> |
-<%= link_to 'Back', category_forum_threads_path(@category) %>
+<%= link_to 'Edit', edit_forum_thread_path(@forum_thread) %> |
+<%= link_to 'Back', category_forum_threads_path(@forum_thread.category) %>

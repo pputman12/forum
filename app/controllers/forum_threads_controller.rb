@@ -1,9 +1,10 @@
 class ForumThreadsController < ApplicationController
   before_filter :login_required
-  before_filter :get_category
+  
   # GET /forum_threads
   # GET /forum_threads.json
   def index
+    @category = Category.find(params[:category_id])
     @forum_threads = @category.forum_threads
 
     respond_to do |format|
@@ -25,6 +26,7 @@ class ForumThreadsController < ApplicationController
   # GET /forum_threads/new
   # GET /forum_threads/new.json
   def new
+    @category = Category.find(params[:category_id])
     @forum_thread = @current_user.forum_threads.build
 
     respond_to do |format|
@@ -42,10 +44,10 @@ class ForumThreadsController < ApplicationController
   # POST /forum_threads.json
   def create
     @forum_thread = @current_user.forum_threads.build(params[:forum_thread])
-    @forum_thread.category = @category
+    @forum_thread.category = Category.find(params[:category_id])
     respond_to do |format|
       if @forum_thread.save
-        format.html { redirect_to [@category, @forum_thread], notice: 'Forum thread was successfully created.' }
+        format.html { redirect_to @forum_thread, notice: 'Forum thread was successfully created.' }
         format.json { render json: @forum_thread, status: :created, location: @forum_thread }
       else
         format.html { render action: "new" }
@@ -61,7 +63,7 @@ class ForumThreadsController < ApplicationController
 
     respond_to do |format|
       if @forum_thread.update_attributes(params[:forum_thread])
-        format.html { redirect_to [@category, @forum_thread], notice: 'Forum thread was successfully updated.' }
+        format.html { redirect_to @forum_thread, notice: 'Forum thread was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -80,11 +82,5 @@ class ForumThreadsController < ApplicationController
       format.html { redirect_to forum_threads_url }
       format.json { head :ok }
     end
-  end
-  
-  private
-  
-  def get_category
-    @category = Category.find(params[:category_id])
   end
 end
