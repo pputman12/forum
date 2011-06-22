@@ -45,6 +45,7 @@ class ForumThreadsController < ApplicationController
   def create
     @forum_thread = @current_user.forum_threads.build(params[:forum_thread])
     @forum_thread.category = Category.find(params[:category_id])
+    @forum_thread.posts.first.user = @current_user
     respond_to do |format|
       if @forum_thread.save
         format.html { redirect_to @forum_thread, notice: 'Forum thread was successfully created.' }

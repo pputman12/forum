@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @forum_thread = ForumThread.find(params[:forum_thread_id])
+    @posts = @forum_thread.posts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,7 +30,7 @@ class PostsController < ApplicationController
     #@post = Post.new
     @forum_thread = ForumThread.find(params[:forum_thread_id])
     @post = @current_user.posts.build
-    @forum_thread.posts.build
+    #@post.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,17 +40,19 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post = @current_user.posts.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @forum_thread = ForumThread.find(params[:forum_thread_id])
+    @post = @forum_thread.posts.build(params[:post])
+    @post.user = @current_user
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @forum_thread, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -61,11 +64,11 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    @post = @current_user.posts.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post.forum_thread, notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
