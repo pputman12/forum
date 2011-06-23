@@ -14,8 +14,8 @@
     <td><%= forum_thread.user_id %></td>
     <td><%= forum_thread.title %></td>
     <td><%= link_to 'Show', forum_thread %></td>
-    <td><%= link_to 'Edit', edit_forum_thread_path(forum_thread) %></td>
-    <td><%= link_to 'Destroy', forum_thread, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_forum_thread_path(forum_thread) if @current_user.admin? %></td>
+    <td><%= link_to 'Destroy', forum_thread, confirm: 'Are you sure?', method: :delete if @current_user.admin? %></td>
   </tr>
 <% end %>
 </table>

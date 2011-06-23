@@ -20,12 +20,12 @@
     <th></th>
     <td><%= category.description %></td>
     <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) if "admin" == @current_user.username || @current_user.admin? %></td>
-    <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete if "admin" == @current_user.username || current_user.admin? %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) if @current_user.admin? %></td>
+    <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete if current_user.admin? %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Category', new_category_path if "admin" == @current_user.username || @current_user.admin? %>
+<%= link_to 'New Category', new_category_path if @current_user.admin? %>

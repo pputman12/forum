@@ -19,7 +19,7 @@
       <td>
         <%= post.content %>
       </td>
-        <% if post.user == @current_user || @current_user.admin? || @current_user.username == "admin" %>
+        <% if post.user == @current_user || @current_user.admin? %>
           <td>
             <%= link_to 'edit post', edit_post_path(post) %>
           </td>
@@ -29,5 +29,5 @@
 </table>
 
 <%= link_to 'Reply', new_forum_thread_post_path(@forum_thread) %> |
-<%= link_to 'Edit', edit_forum_thread_path(@forum_thread) if @user == @current_user || @current_user.admin? || @current_user.username == "admin"%> 
+<%= link_to 'Edit', edit_forum_thread_path(@forum_thread) if @user == @current_user || @current_user.admin? %> 
 <%= link_to 'Back', category_forum_threads_path(@forum_thread.category) %>
