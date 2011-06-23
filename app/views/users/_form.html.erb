@@ -23,7 +23,17 @@
   <div class="field">
     <%= f.label :password_confirmation %>
     <br />
-    <%= f.password_field :password_confirmation%>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <% if  @user.username == "admin" || @user.admin? %>
+  
+  <div class="field">
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
+  </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

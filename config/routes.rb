@@ -5,8 +5,6 @@ Forum::Application.routes.draw do
     resources :forum_threads, :only => [:index, :new, :create]
   end
   
-  
-  
   resources :forum_threads, :only => [:show, :edit, :update, :destroy] do
     resources :posts, :only => [:index, :new, :create]
   end

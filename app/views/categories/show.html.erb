@@ -17,5 +17,5 @@
 
 
 <%= link_to 'New Thread', new_category_forum_thread_path(@category)%> |
-<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Edit', edit_category_path(@category) if @user == @current_user %> |
 <%= link_to 'Back', categories_path %>
